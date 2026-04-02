@@ -1,4 +1,5 @@
 ﻿using System;
+using serverside.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,7 @@ namespace serverside
                             .AllowAnyMethod();
                     });
             });
-
+            services.AddHttpClient<IMovieRepository, MovieRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

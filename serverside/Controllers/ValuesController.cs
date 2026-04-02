@@ -1,7 +1,6 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using serverside.Repositories;
 
 namespace serverside.Controllers
 {
@@ -9,30 +8,17 @@ namespace serverside.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private static readonly HttpClient _httpClient = new HttpClient();
-        private const string BaseUrl = "https://api.themoviedb.org/3";
+        private readonly IMovieRepository _movieRepository;
 
-        private string GetApiKey()
+        public ValuesController(IMovieRepository movieRepository)
         {
-            var apiKey = Environment.GetEnvironmentVariable("API_KEY");
-
-            if (string.IsNullOrWhiteSpace(apiKey))
-            {
-                throw new Exception("API_KEY environment variable is missing.");
-            }
-
-            return apiKey;
+            _movieRepository = movieRepository;
         }
 
         [HttpGet("popular")]
         public async Task<IActionResult> GetPopular()
         {
-            var apiKey = GetApiKey();
-            var url = $"{BaseUrl}/movie/popular?api_key={apiKey}";
-
-            var response = await _httpClient.GetAsync(url);
-            var content = await response.Content.ReadAsStringAsync();
-
+            var content = await _movieRepository.GetPopularMovies();
             return Content(content, "application/json");
         }
 
@@ -44,25 +30,14 @@ namespace serverside.Controllers
                 return BadRequest("Query is required.");
             }
 
-            var apiKey = GetApiKey();
-            var encodedQuery = Uri.EscapeDataString(query);
-            var url = $"{BaseUrl}/search/movie?api_key={apiKey}&query={encodedQuery}";
-
-            var response = await _httpClient.GetAsync(url);
-            var content = await response.Content.ReadAsStringAsync();
-
+            var content = await _movieRepository.SearchMovies(query);
             return Content(content, "application/json");
         }
 
         [HttpGet("movie/{id}")]
         public async Task<IActionResult> GetMovie(int id)
         {
-            var apiKey = GetApiKey();
-            var url = $"{BaseUrl}/movie/{id}?api_key={apiKey}";
-
-            var response = await _httpClient.GetAsync(url);
-            var content = await response.Content.ReadAsStringAsync();
-
+            var content = await _movieRepository.GetMovie(id);
             return Content(content, "application/json");
         }
     }

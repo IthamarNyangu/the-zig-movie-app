@@ -81,3 +81,138 @@ h1 {
 .search-bar button:hover {
   opacity: 0.9;
 }
+
+.movie-link {
+  color: #1f2937;
+  text-decoration: none;
+}
+
+.movie-link:hover {
+  text-decoration: underline;
+}
+
+.details-card {
+  background: white;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.movie-poster {
+  width: 300px;
+  max-width: 100%;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto 24px;
+}
+
+.details-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.movie-title-link {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.movie-title-link:hover {
+  text-decoration: underline;
+}
+
+.back-link {
+  color: #1d4ed8;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.movie-title-button {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  font-weight: bold;
+  color: #1f2937;
+  cursor: pointer;
+  text-align: left;
+}
+
+.movie-title-button:hover {
+  text-decoration: underline;
+}
+
+.details-card {
+  background: white;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.movie-poster {
+  width: 300px;
+  max-width: 100%;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto 24px;
+}
+
+.details-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.movie-title-link {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.movie-title-link:hover {
+  text-decoration: underline;
+}
+
+.back-button {
+  margin-bottom: 20px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1d4ed8;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.back-button:hover {
+  opacity: 0.9;
+}
+
+.movie-card {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.movie-card-poster {
+  width: 140px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.movie-card-content {
+  flex: 1;
+}
+
+@media (max-width: 700px) {
+  .movie-card {
+    flex-direction: column;
+  }
+
+  .movie-card-poster {
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto;
+  }
+}
